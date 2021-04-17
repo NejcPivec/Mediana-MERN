@@ -1,11 +1,23 @@
-import './App.css';
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Navigation from "./components/Navigation";
+
+import { Container, Row, Col } from "react-bootstrap";
+import SurveyForm from "./components/SurveyForm";
 
 function App() {
   return (
-    <div className="App">
-     <h1>Hello World</h1>
-    </div>
+    <>
+      <Navigation />
+      <Container>
+        <Row className="margin-top">
+          <Col lg={4}>
+            <SurveyForm />
+          </Col>
+          <Col lg={8}></Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
