@@ -13,6 +13,7 @@ connectDb();
 // Create a new survey and save to Database
 app.post("/survey", async (req, res) => {
   const { name, survey } = req.body;
+
   try {
     const surveys = new Survey({
       name,
@@ -32,6 +33,15 @@ app.post("/survey", async (req, res) => {
 });
 
 // TODO: Read surveys from db and display in a list
+app.get("/survey", async (req, res) => {
+  try {
+    const surveys = await Survey.find().sort({ date: -1 });
+    res.json(surveys);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 // TODO: Delete survey depending on ID
 // TODO: Edit survey depending on ID
 

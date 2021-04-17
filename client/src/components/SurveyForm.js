@@ -4,7 +4,13 @@ import { Form, Button } from "react-bootstrap";
 
 const SurveyForm = () => {
   const [name, setName] = useState("");
-  const [survey, setSurvey] = useState({});
+  let [survey, setSurvey] = useState({});
+
+  const cleanJson = (dirty) => {
+    return JSON.parse(
+      dirty.replace(/\\n/g, "").replace(/\s+/g, "").replace(/\\/g, "")
+    );
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -14,13 +20,23 @@ const SurveyForm = () => {
         "Content-Type": "application/json",
       },
     };
+
     try {
+      survey = cleanJson(survey);
       const newSurvey = { name, survey };
 
-      await axios.post("/survey", newSurvey, config).then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
+      await axios.post("/survey", newSurvey, config).then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      // Clear inputs
+      setName("");
+      setSurvey({});
     } catch (err) {
       console.error(err);
     }
