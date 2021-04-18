@@ -25,4 +25,4 @@ CRUD application for creating surveys.
 
 ### Screenshots
 
-![]()
+![Mediana](https://github.com/NejcPivec/Mediana-mern/blob/main/screenshots/mediana.png)
