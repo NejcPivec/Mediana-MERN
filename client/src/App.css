@@ -7,3 +7,22 @@
 .margin-top {
   margin-top: 3rem;
 }
+
+/* Cards */
+.card {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .icons {
+  margin-right: 10px;
+}

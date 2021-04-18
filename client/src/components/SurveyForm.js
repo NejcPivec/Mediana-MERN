@@ -35,8 +35,7 @@ const SurveyForm = () => {
       );
 
       // Clear inputs
-      setName("");
-      setSurvey({});
+      e.target.reset();
     } catch (err) {
       console.error(err);
     }
@@ -56,7 +55,7 @@ const SurveyForm = () => {
         <Form.Label>Survey json</Form.Label>
         <Form.Control
           as="textarea"
-          rows={5}
+          rows={8}
           onChange={(e) => setSurvey(e.target.value)}
         />
       </Form.Group>
