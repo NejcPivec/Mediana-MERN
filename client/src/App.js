@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     getAllSurveys();
-  }, []);
+  }, [allSurveys]);
 
   const getAllSurveys = async () => {
     try {

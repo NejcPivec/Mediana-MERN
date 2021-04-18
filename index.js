@@ -32,7 +32,7 @@ app.post("/survey", async (req, res) => {
   }
 });
 
-// TODO: Read surveys from db and display in a list
+// Read surveys from db and display in a list
 app.get("/survey", async (req, res) => {
   try {
     const surveys = await Survey.find().sort({ date: -1 });
@@ -42,7 +42,15 @@ app.get("/survey", async (req, res) => {
   }
 });
 
-// TODO: Delete survey depending on ID
+// Delete survey depending on ID
+app.delete("/survey/:id", async (req, res) => {
+  try {
+    await Survey.findByIdAndDelete(req.params.id);
+    res.json({ msg: "Survey was removed" });
+  } catch (err) {
+    console.error(err);
+  }
+});
 // TODO: Edit survey depending on ID
 
 // Start server
