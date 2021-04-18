@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDb = require("./db");
+const Results = require("./models/Results");
 const Survey = require("./models/Survey");
 const PORT = 5000;
 
@@ -82,6 +83,28 @@ app.put("/survey/:id", async (req, res) => {
     ); // if the item doesnt exist create it
 
     res.json(updatedSurvey);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+// Save results to database
+app.post("/results", async (req, res) => {
+  const { respondent, survey } = req.body;
+
+  try {
+    const results = new Results({
+      respondent,
+      survey,
+    });
+
+    // Save survey to database
+    results
+      .save()
+      .then((item) => res.send("Survey results were saved to database"))
+      .catch((err) => {
+        err.status(400).send("Unable to save to database");
+      });
   } catch (err) {
     console.error(err);
   }
