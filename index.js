@@ -42,6 +42,16 @@ app.get("/survey", async (req, res) => {
   }
 });
 
+// Read single survey from db
+app.get("/survey/:id", async (req, res) => {
+  try {
+    const surveys = await Survey.findById(req.params.id);
+    res.json(surveys);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 // Delete survey depending on ID
 app.delete("/survey/:id", async (req, res) => {
   try {
@@ -51,7 +61,31 @@ app.delete("/survey/:id", async (req, res) => {
     console.error(err);
   }
 });
-// TODO: Edit survey depending on ID
+
+// Edit survey depending on ID
+app.put("/survey/:id", async (req, res) => {
+  const { name, survey } = req.body;
+
+  // Build Item object
+  const surveyFields = {};
+  if (name) surveyFields.name = name;
+  if (survey) surveyFields.survey = survey;
+
+  try {
+    // update
+    let updatedSurvey = await Survey.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: surveyFields,
+      },
+      { new: true }
+    ); // if the item doesnt exist create it
+
+    res.json(updatedSurvey);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 // Start server
 app.listen(PORT, () => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import moment from "moment";
 
-const Surveys = ({ singleSurvey: { name, date, _id } }) => {
+const Surveys = ({ singleSurvey: { name, date, _id }, getSingleSurvey }) => {
   const formatDate = (unformatDate) => {
     return moment(unformatDate).format("MMM Do YY");
   };
@@ -20,9 +20,15 @@ const Surveys = ({ singleSurvey: { name, date, _id } }) => {
     <Card className="card">
       <Card.Header as="h6">{name}</Card.Header>
       <Card.Body>
-        <Card.Text>Created: {formatDate(date)}</Card.Text>
+        <Card.Text>
+          <strong>Created:</strong> {formatDate(date)}
+        </Card.Text>
         <div className="icons">
-          <Button variant="warning" className="icons">
+          <Button
+            variant="warning"
+            className="icons"
+            onClick={() => getSingleSurvey(_id)}
+          >
             <i className="fas fa-pen"></i>
           </Button>
           <Button variant="danger" onClick={() => deleteSurvey(_id)}>

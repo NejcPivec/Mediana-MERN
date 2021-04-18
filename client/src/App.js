@@ -8,18 +8,29 @@ import { Container, Row, Col } from "react-bootstrap";
 import SurveyForm from "./components/SurveyForm";
 import Surveys from "./components/Surveys";
 import Loading from "./components/Loading";
+import UpdateSurveyFrom from "./components/UpdateSurveyFrom";
 
 function App() {
   const [allSurveys, setAllSurveys] = useState([]);
+  const [singleSurvey, setSingleSurvey] = useState({});
 
   useEffect(() => {
     getAllSurveys();
-  }, [allSurveys]);
+  }, []);
 
   const getAllSurveys = async () => {
     try {
       const { data } = await axios.get("/survey");
       setAllSurveys(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getSingleSurvey = async (id) => {
+    try {
+      const { data } = await axios.get(`/survey/${id}`);
+      setSingleSurvey(data);
     } catch (err) {
       console.error(err);
     }
@@ -31,14 +42,22 @@ function App() {
       <Container>
         <Row className="margin-top">
           <Col lg={5}>
-            <SurveyForm />
+            {Object.keys(singleSurvey).length === 0 ? (
+              <SurveyForm />
+            ) : (
+              <UpdateSurveyFrom singleSurvey={singleSurvey} />
+            )}
           </Col>
           <Col lg={7}>
             {allSurveys.length > 0 ? (
               <div>
                 <h5>Created surveys</h5>
-                {allSurveys.map((singleSurvey, index) => (
-                  <Surveys key={index} singleSurvey={singleSurvey} />
+                {allSurveys.map((survey, index) => (
+                  <Surveys
+                    key={index}
+                    singleSurvey={survey}
+                    getSingleSurvey={getSingleSurvey}
+                  />
                 ))}
               </div>
             ) : (
