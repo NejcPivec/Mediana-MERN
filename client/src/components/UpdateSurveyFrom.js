@@ -26,14 +26,20 @@ const UpdateSurveyFrom = ({ singleSurvey }) => {
       survey = cleanJson(survey);
       const newSurvey = { name, survey };
 
-      await axios.put(`/survey/${singleSurvey._id}`, newSurvey, config).then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      await axios
+        .put(
+          `http://localhost:5000/survey/${singleSurvey._id}`,
+          newSurvey,
+          config
+        )
+        .then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
 
       // Clear inputs
       e.target.reset();

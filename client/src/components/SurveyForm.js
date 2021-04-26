@@ -25,7 +25,7 @@ const SurveyForm = () => {
       survey = cleanJson(survey);
       const newSurvey = { name, survey };
 
-      await axios.post("/survey", newSurvey, config).then(
+      await axios.post("http://localhost:5000/survey", newSurvey, config).then(
         (response) => {
           console.log(response);
         },

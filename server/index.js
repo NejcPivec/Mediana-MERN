@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const connectDb = require("./db");
 const Results = require("./models/Results");
 const Survey = require("./models/Survey");
@@ -7,6 +8,7 @@ const PORT = 5000;
 // Init express
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Connect to database
 connectDb();

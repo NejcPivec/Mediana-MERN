@@ -20,7 +20,7 @@ function App() {
 
   const getAllSurveys = async () => {
     try {
-      const { data } = await axios.get("/survey");
+      const { data } = await axios.get("http://localhost:5000/survey");
       setAllSurveys(data);
     } catch (err) {
       console.error(err);
@@ -29,7 +29,7 @@ function App() {
 
   const getSingleSurvey = async (id) => {
     try {
-      const { data } = await axios.get(`/survey/${id}`);
+      const { data } = await axios.get(`http://localhost:5000/survey/${id}`);
       setSingleSurvey(data);
     } catch (err) {
       console.error(err);

@@ -10,7 +10,7 @@ const Surveys = ({ singleSurvey: { name, date, _id }, getSingleSurvey }) => {
 
   const deleteSurvey = async (id) => {
     try {
-      await axios.delete(`/survey/${id}`);
+      await axios.delete(`http://localhost:5000/survey/${id}`);
     } catch (err) {
       console.error(err);
     }
