@@ -29,7 +29,10 @@ In project root there is a file `Mediana.postman_collection.json`, you imported 
 ### Database
 
 For inspecting local mongo database i recommend using `MongoBD Compass`.
-For connecting to your own database: - Hostname: localhost - Port: 27018
+For connecting to your own database:
+
+- Hostname: localhost
+- Port: 27018
 
 ##### Download Compass:
 
@@ -47,24 +50,24 @@ If you use surveyJS, you must be careful because their software doesn't write va
 
 ###### SurveyJS JSON:
 
-```json
+```
 {
-  "pages": [
+  pages: [
     {
-      "name": "page1",
-      "elements": [
+      name: "page1",
+      elements: [
         {
-          "type": "checkbox",
-          "name": "question1",
-          "title": "Favorite NBA team?",
-          "choices": [
+          type: "checkbox",
+          name: "question1",
+          title: "Favorite NBA team?",
+          choices: [
             {
-              "value": "item1",
-              "text": "LA Lakers"
+              value: "item1",
+              text: "LA Lakers"
             },
             {
-              "value": "item2",
-              "text": "LA Clippers"
+              value: "item2",
+              text: "LA Clippers"
             }
           ]
         }
